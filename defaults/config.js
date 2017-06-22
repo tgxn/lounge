@@ -51,9 +51,18 @@ module.exports = {
 	// Set the default theme.
 	//
 	// @type     string
-	// @default  "themes/example.css"
+	// @default  "example"
 	//
-	theme: "themes/example.css",
+	theme: "example",
+
+	//
+	// A list of plugins installed as global npm modules
+	//
+	// Find available themes at https://www.npmjs.com/search?q=keywords%3Alounge-theme
+	//
+	// @type	array
+	// @default	[]
+	plugins: [],
 
 	//
 	// Prefetch URLs
