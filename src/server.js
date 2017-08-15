@@ -296,6 +296,20 @@ function initializeClient(socket, client, generateToken, token) {
 		}
 	});
 
+	socket.on("sessions:get", () => {
+		// TODO: Gotta send unique id for each session, but not the actual token
+		const sessions = _.map(
+			client.config.sessions,
+			(session) => _.pick(session, [
+				"lastUse",
+				"ip",
+				"agent",
+			])
+		);
+
+		socket.emit("sessions:list", sessions);
+	});
+
 	socket.on("sign-out", () => {
 		delete client.config.sessions[token];
 

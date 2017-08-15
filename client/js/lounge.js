@@ -541,8 +541,9 @@ $(function() {
 		}
 		document.title = title;
 
+		const type = chan.data("type");
 		var placeholder = "";
-		if (chan.data("type") === "channel" || chan.data("type") === "query") {
+		if (type === "channel" || type === "query") {
 			placeholder = `Write to ${chan.data("title")}`;
 		}
 		input.attr("placeholder", placeholder);
@@ -560,6 +561,11 @@ $(function() {
 		if (chan.data("needsNamesRefresh") === true) {
 			chan.data("needsNamesRefresh", false);
 			socket.emit("names", {target: self.data("id")});
+		}
+
+		if (type === "settings") {
+			$("#session-list").text("Loading…");
+			socket.emit("sessions:get");
 		}
 
 		focus();
